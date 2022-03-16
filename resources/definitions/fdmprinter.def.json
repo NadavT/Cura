@@ -1054,8 +1054,8 @@
                     "default_value": 0.8,
                     "value": "wall_line_width_0 if magic_spiralize else 0.8",
                     "minimum_value": "0",
-                    "minimum_value_warning": "line_width if not ratio_based_walls else 0",
-                    "maximum_value_warning": "10 * line_width if not ratio_based_walls else 999999 * line_width",
+                    "minimum_value_warning": "line_width",
+                    "maximum_value_warning": "10 * line_width",
                     "maximum_value": "999999 * line_width",
                     "type": "float",
                     "limit_to_extruder": "wall_x_extruder_nr",
@@ -1069,7 +1069,7 @@
                             "default_value": 2,
                             "minimum_value": "0",
                             "minimum_value_warning": "1",
-                            "maximum_value_warning": "10 if not ratio_based_walls else 999999",
+                            "maximum_value_warning": "10",
                             "maximum_value": "999999",
                             "type": "int",
                             "value": "perimeters if beading_strategy_type == 'ratio_distributed' else 1 if magic_spiralize else max(1, round((wall_thickness - wall_line_width_0) / wall_line_width_x) + 1) if wall_thickness != 0 else 0",
@@ -8006,46 +8006,6 @@
                     "enabled": "resolveOrValue('adhesion_type') == 'raft'",
                     "settable_per_mesh": false,
                     "settable_per_extruder": false
-                },
-                "ratio_based_walls":
-                {
-                    "label": "Ratio Based Walls",
-                    "description": "Generate wall width according to this ratio instead of inner/outter values.",
-                    "type": "bool",
-                    "default_value": false,
-                    "settable_per_mesh": true,
-                    "children":
-                    {
-                        "wall_line_width_ratio":
-                        {
-                            "label": "Wall Line Width Ratio",
-                            "description": "Ratio between inner and outter walls line.",
-                            "unit": "%",
-                            "type": "float",
-                            "default_value": 50,
-                            "minimum_value_warning": "100 * (min_line_width / wall_thickness)",
-                            "maximum_value_warning": "100 * (max_line_width / wall_thickness)",
-                            "settable_per_mesh": true
-                        },
-                        "min_line_width":
-                        {
-                            "label": "Minimum Line Width",
-                            "description": "The minimum line width.",
-                            "unit": "mm",
-                            "type": "float",
-                            "default_value": 0.1,
-                            "settable_per_mesh": true
-                        },
-                        "max_line_width":
-                        {
-                            "label": "Maximum Line Width",
-                            "description": "The maximum line width.",
-                            "unit": "mm",
-                            "type": "float",
-                            "default_value": 1,
-                            "settable_per_mesh": true
-                        }
-                    }
                 },
                 "min_extrusion_width":
                 {
