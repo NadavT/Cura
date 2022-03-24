@@ -8044,6 +8044,14 @@
                     "default_value": "0.6:0.3:0.1",
                     "settable_per_mesh": true,
                     "enabled": "beading_strategy_type == 'ratio_distributed'"
+                },
+                "vertices_weights":
+                {
+                    "label": "Specified Vertices Weights",
+                    "description": "The weights of the vertices (each layer is the same, ',' seperated list, defaults to 1 for vertices with higher index than list length)",
+                    "type": "str",
+                    "default_value": "",
+                    "settable_per_mesh": true
                 }
             }
         },
