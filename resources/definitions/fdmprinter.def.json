@@ -8052,6 +8052,24 @@
                     "type": "str",
                     "default_value": "",
                     "settable_per_mesh": true
+                },
+                "line_discretization_width_step":
+                {
+                    "label": "Width Discretization Step Width",
+                    "description": "The width differential to use as a step for discritization",
+                    "unit": "mm",
+                    "type": "float",
+                    "default_value": "0.1",
+                    "settable_per_mesh": true
+                },
+                "line_discretization_min_step_len":
+                {
+                    "label": "Width Discretization Step Minimum Length",
+                    "description": "The minimum length to use as a step for discritization",
+                    "unit": "mm",
+                    "type": "float",
+                    "default_value": "1",
+                    "settable_per_mesh": true
                 }
             }
         },
