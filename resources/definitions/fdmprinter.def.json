@@ -8070,6 +8070,22 @@
                     "type": "float",
                     "default_value": "1",
                     "settable_per_mesh": true
+                },
+                "engine_variant":
+                {
+                    "label": "Engine Varient",
+                    "description": "The engine varient",
+                    "type": "enum",
+                    "options":
+                    {
+                        "": "Classic",
+                        "ratio": "Ratio Based Walls",
+                        "differntial": "Differential Walls"
+                    },
+                    "default_value": "",
+                    "settable_per_mesh": false,
+                    "settable_per_extruder": false,
+                    "settable_per_meshgroup": false
                 }
             }
         },
