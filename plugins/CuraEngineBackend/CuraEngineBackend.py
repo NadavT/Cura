@@ -215,7 +215,21 @@ class CuraEngineBackend(QObject, Backend):
         This is useful for debugging and used to actually start the engine.
         :return: list of commands and args / parameters.
         """
-        command = [CuraApplication.getInstance().getPreferences().getValue("backend/location"), "connect", "127.0.0.1:{0}".format(self._port), ""]
+        final_binary = CuraApplication.getInstance().getPreferences().getValue(
+            "backend/location")
+        if CuraApplication.getInstance().getGlobalContainerStack() is not None:
+            engine_variant = CuraApplication.getInstance().getGlobalContainerStack(
+            ).getProperty("engine_variant", "value")
+            windows = False
+            if ".exe" in final_binary:
+                final_binary = final_binary.replace(".exe", "")
+                windows = True
+            if len(engine_variant) > 0:
+                final_binary += "_" + engine_variant
+            if windows:
+                final_binary += ".exe"
+        command = [final_binary, "connect",
+                   "127.0.0.1:{0}".format(self._port), ""]
 
         parser = argparse.ArgumentParser(prog = "cura", add_help = False)
         parser.add_argument("--debug", action = "store_true", default = False, help = "Turn on the debug mode by setting this option.")
@@ -681,6 +695,8 @@ class CuraEngineBackend(QObject, Backend):
         if property == "value":  # Only reslice if the value has changed.
             self.needsSlicing()
             self._onChanged()
+            if instance == "engine_variant":
+                self.startEngine()
 
         elif property == "validationState":
             if self._use_timer:
